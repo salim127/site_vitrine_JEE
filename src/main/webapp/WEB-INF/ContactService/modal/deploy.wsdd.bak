@@ -1,0 +1,53 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ContactService WSDL service -->
+
+  <service name="Contact" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://modal"/>
+      <parameter name="wsdlServiceElement" value="ContactService"/>
+      <parameter name="schemaQualified" value="http://modal"/>
+      <parameter name="wsdlServicePort" value="Contact"/>
+      <parameter name="className" value="modal.ContactSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="Contact"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="getName" qname="operNS:getName" xmlns:operNS="http://modal" returnQName="retNS:getNameReturn" xmlns:retNS="http://modal" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="toString" qname="operNS:toString" xmlns:operNS="http://modal" returnQName="retNS:toStringReturn" xmlns:retNS="http://modal" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="getMessage" qname="operNS:getMessage" xmlns:operNS="http://modal" returnQName="retNS:getMessageReturn" xmlns:retNS="http://modal" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="setName" qname="operNS:setName" xmlns:operNS="http://modal" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://modal" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getId" qname="operNS:getId" xmlns:operNS="http://modal" returnQName="retNS:getIdReturn" xmlns:retNS="http://modal" returnType="rtns:int" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="setMessage" qname="operNS:setMessage" xmlns:operNS="http://modal" soapAction="" >
+        <parameter qname="pns:message" xmlns:pns="http://modal" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="setId" qname="operNS:setId" xmlns:operNS="http://modal" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://modal" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getEmail" qname="operNS:getEmail" xmlns:operNS="http://modal" returnQName="retNS:getEmailReturn" xmlns:retNS="http://modal" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <operation name="setEmail" qname="operNS:setEmail" xmlns:operNS="http://modal" soapAction="" >
+        <parameter qname="pns:email" xmlns:pns="http://modal" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="setPhone" qname="operNS:setPhone" xmlns:operNS="http://modal" soapAction="" >
+        <parameter qname="pns:phone" xmlns:pns="http://modal" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getPhone" qname="operNS:getPhone" xmlns:operNS="http://modal" returnQName="retNS:getPhoneReturn" xmlns:retNS="http://modal" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="setName getPhone getName setEmail getMessage setId getEmail toString getId setPhone setMessage"/>
+
+  </service>
+</deployment>

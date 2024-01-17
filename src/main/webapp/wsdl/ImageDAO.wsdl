@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://DAO" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://DAO" xmlns:intf="http://DAO" xmlns:tns1="http://modal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://DAO" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://modal"/>
+   <element name="selectAllImages">
+    <complexType/>
+   </element>
+   <element name="selectAllImagesResponse">
+    <complexType>
+     <sequence>
+      <element name="selectAllImagesReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+   <element name="deleteImage">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteImageResponse">
+    <complexType>
+     <sequence>
+      <element name="deleteImageReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateImage">
+    <complexType>
+     <sequence>
+      <element name="image" type="tns1:Image"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="updateImageResponse">
+    <complexType>
+     <sequence>
+      <element name="updateImageReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="selectImage">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="selectImageResponse">
+    <complexType>
+     <sequence>
+      <element name="selectImageReturn" type="tns1:Image"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertImage">
+    <complexType>
+     <sequence>
+      <element name="image" type="tns1:Image"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="insertImageResponse">
+    <complexType/>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://modal" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://DAO"/>
+   <complexType name="Image">
+    <sequence>
+     <element name="cheminImage" nillable="true" type="xsd:string"/>
+     <element name="description" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="nom" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="deleteImageRequest">
+
+      <wsdl:part element="impl:deleteImage" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateImageResponse">
+
+      <wsdl:part element="impl:updateImageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateImageRequest">
+
+      <wsdl:part element="impl:updateImage" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="selectAllImagesResponse">
+
+      <wsdl:part element="impl:selectAllImagesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteImageResponse">
+
+      <wsdl:part element="impl:deleteImageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertImageResponse">
+
+      <wsdl:part element="impl:insertImageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="selectAllImagesRequest">
+
+      <wsdl:part element="impl:selectAllImages" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="selectImageResponse">
+
+      <wsdl:part element="impl:selectImageResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="insertImageRequest">
+
+      <wsdl:part element="impl:insertImage" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="selectImageRequest">
+
+      <wsdl:part element="impl:selectImage" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ImageDAO">
+
+      <wsdl:operation name="selectAllImages">
+
+         <wsdl:input message="impl:selectAllImagesRequest" name="selectAllImagesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:selectAllImagesResponse" name="selectAllImagesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteImage">
+
+         <wsdl:input message="impl:deleteImageRequest" name="deleteImageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteImageResponse" name="deleteImageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateImage">
+
+         <wsdl:input message="impl:updateImageRequest" name="updateImageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateImageResponse" name="updateImageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="selectImage">
+
+         <wsdl:input message="impl:selectImageRequest" name="selectImageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:selectImageResponse" name="selectImageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insertImage">
+
+         <wsdl:input message="impl:insertImageRequest" name="insertImageRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:insertImageResponse" name="insertImageResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ImageDAOSoapBinding" type="impl:ImageDAO">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="selectAllImages">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="selectAllImagesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="selectAllImagesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteImage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteImageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteImageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="updateImage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateImageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateImageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="selectImage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="selectImageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="selectImageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="insertImage">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="insertImageRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="insertImageResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ImageDAOService">
+
+      <wsdl:port binding="impl:ImageDAOSoapBinding" name="ImageDAO">
+
+         <wsdlsoap:address location="http://localhost:8080/ProjetSoa/services/ImageDAO"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

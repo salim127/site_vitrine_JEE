@@ -1,0 +1,28 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ImageServletService WSDL service -->
+
+  <service name="ImageServlet" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://web"/>
+      <parameter name="wsdlServiceElement" value="ImageServletService"/>
+      <parameter name="schemaQualified" value="http://web"/>
+      <parameter name="wsdlServicePort" value="ImageServlet"/>
+      <parameter name="className" value="web.ImageServletSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ImageServlet"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="init" qname="operNS:init" xmlns:operNS="http://web" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="init"/>
+
+  </service>
+</deployment>

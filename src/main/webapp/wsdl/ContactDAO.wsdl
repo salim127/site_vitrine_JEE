@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://DAO" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://DAO" xmlns:intf="http://DAO" xmlns:tns1="http://modal" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://DAO" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://modal"/>
+   <element name="addContact">
+    <complexType>
+     <sequence>
+      <element name="contact" type="tns1:Contact"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addContactResponse">
+    <complexType/>
+   </element>
+   <element name="deleteContactById">
+    <complexType>
+     <sequence>
+      <element name="contactId" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deleteContactByIdResponse">
+    <complexType/>
+   </element>
+   <element name="getAllContacts">
+    <complexType/>
+   </element>
+   <element name="getAllContactsResponse">
+    <complexType>
+     <sequence>
+      <element name="getAllContactsReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://modal" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://DAO"/>
+   <complexType name="Contact">
+    <sequence>
+     <element name="email" nillable="true" type="xsd:string"/>
+     <element name="id" type="xsd:int"/>
+     <element name="message" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+     <element name="phone" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="addContactResponse">
+
+      <wsdl:part element="impl:addContactResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteContactByIdResponse">
+
+      <wsdl:part element="impl:deleteContactByIdResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteContactByIdRequest">
+
+      <wsdl:part element="impl:deleteContactById" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllContactsResponse">
+
+      <wsdl:part element="impl:getAllContactsResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addContactRequest">
+
+      <wsdl:part element="impl:addContact" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAllContactsRequest">
+
+      <wsdl:part element="impl:getAllContacts" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ContactDAO">
+
+      <wsdl:operation name="addContact">
+
+         <wsdl:input message="impl:addContactRequest" name="addContactRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addContactResponse" name="addContactResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteContactById">
+
+         <wsdl:input message="impl:deleteContactByIdRequest" name="deleteContactByIdRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteContactByIdResponse" name="deleteContactByIdResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllContacts">
+
+         <wsdl:input message="impl:getAllContactsRequest" name="getAllContactsRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAllContactsResponse" name="getAllContactsResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ContactDAOSoapBinding" type="impl:ContactDAO">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addContact">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addContactRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addContactResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="deleteContactById">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteContactByIdRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteContactByIdResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getAllContacts">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAllContactsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAllContactsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ContactDAOService">
+
+      <wsdl:port binding="impl:ContactDAOSoapBinding" name="ContactDAO">
+
+         <wsdlsoap:address location="http://localhost:8080/ProjetSoa/services/ContactDAO"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

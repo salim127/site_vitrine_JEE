@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ImageService WSDL service -->
+
+  <service name="Image" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://modal"/>
+      <parameter name="wsdlServiceElement" value="ImageService"/>
+      <parameter name="schemaQualified" value="http://modal"/>
+      <parameter name="wsdlServicePort" value="Image"/>
+      <parameter name="className" value="modal.Image"/>
+      <parameter name="wsdlPortType" value="Image"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://modal" xmlns:retNS="http://modal" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="toString" qname="operNS:toString" returnQName="retNS:toStringReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://modal" xmlns:retNS="http://modal" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getId" qname="operNS:getId" returnQName="retNS:getIdReturn" returnType="rtns:int" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://modal" name="setNom" qname="operNS:setNom" soapAction="">
+        <parameter xmlns:pns="http://modal" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nom" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://modal" name="setId" qname="operNS:setId" soapAction="">
+        <parameter xmlns:pns="http://modal" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://modal" xmlns:retNS="http://modal" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getDescription" qname="operNS:getDescription" returnQName="retNS:getDescriptionReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://modal" name="setDescription" qname="operNS:setDescription" soapAction="">
+        <parameter xmlns:pns="http://modal" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:description" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://modal" name="setCheminImage" qname="operNS:setCheminImage" soapAction="">
+        <parameter xmlns:pns="http://modal" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cheminImage" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://modal" xmlns:retNS="http://modal" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getNom" qname="operNS:getNom" returnQName="retNS:getNomReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://modal" xmlns:retNS="http://modal" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getCheminImage" qname="operNS:getCheminImage" returnQName="retNS:getCheminImageReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="setNom setId toString getId setCheminImage setDescription getCheminImage getDescription getNom"/>
+
+  </service>
+</deployment>

@@ -1,0 +1,97 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ContactDAOService WSDL service -->
+
+  <service name="ContactDAO" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://DAO"/>
+      <parameter name="wsdlServiceElement" value="ContactDAOService"/>
+      <parameter name="schemaQualified" value="http://DAO,http://modal"/>
+      <parameter name="wsdlServicePort" value="ContactDAO"/>
+      <parameter name="className" value="DAO.ContactDAOSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ContactDAO"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="addContact" qname="operNS:addContact" xmlns:operNS="http://DAO" soapAction="" >
+        <parameter qname="pns:contact" xmlns:pns="http://DAO" type="tns:Contact" xmlns:tns="http://modal"/>
+      </operation>
+      <operation name="deleteContactById" qname="operNS:deleteContactById" xmlns:operNS="http://DAO" soapAction="" >
+        <parameter qname="pns:contactId" xmlns:pns="http://DAO" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="getAllContacts" qname="operNS:getAllContacts" xmlns:operNS="http://DAO" returnQName="retNS:getAllContactsReturn" xmlns:retNS="http://DAO" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://DAO" returnItemQName="tns:item" xmlns:tns="http://DAO" soapAction="" >
+      </operation>
+      <parameter name="allowedMethods" value="deleteContactById addContact getAllContacts"/>
+
+      <typeMapping
+        xmlns:ns="http://modal"
+        qname="ns:Contact"
+        type="java:modal.Contact"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>deleteContactByIdResponse"
+        type="java:DAO.DeleteContactByIdResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>getAllContactsResponse"
+        type="java:DAO.GetAllContactsResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>getAllContacts"
+        type="java:DAO.GetAllContacts"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>addContact"
+        type="java:DAO.AddContact"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>addContactResponse"
+        type="java:DAO.AddContactResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://DAO"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>deleteContactById"
+        type="java:DAO.DeleteContactById"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>

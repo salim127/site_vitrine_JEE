@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ContactDAOService WSDL service -->
+
+  <service name="ContactDAO" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://DAO"/>
+      <parameter name="wsdlServiceElement" value="ContactDAOService"/>
+      <parameter name="schemaQualified" value="http://DAO,http://modal"/>
+      <parameter name="wsdlServicePort" value="ContactDAO"/>
+      <parameter name="className" value="DAO.ContactDAO"/>
+      <parameter name="wsdlPortType" value="ContactDAO"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://DAO" name="addContact" qname="operNS:addContact" soapAction="">
+        <parameter xmlns:pns="http://DAO" xmlns:tns="http://modal" qname="pns:contact" type="tns:Contact"/>
+      </operation>
+      <operation xmlns:operNS="http://DAO" name="deleteContactById" qname="operNS:deleteContactById" soapAction="">
+        <parameter xmlns:pns="http://DAO" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:contactId" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://DAO" xmlns:retNS="http://DAO" xmlns:rtns="http://DAO" xmlns:tns="http://DAO" name="getAllContacts" qname="operNS:getAllContacts" returnQName="retNS:getAllContactsReturn" returnType="rtns:ArrayOf_xsd_anyType" returnItemQName="tns:item" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="deleteContactById addContact getAllContacts"/>
+
+      <typeMapping xmlns:ns="http://modal" qname="ns:Contact" type="java:modal.Contact" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://DAO" qname="ns:&gt;deleteContactByIdResponse" type="java:DAO.DeleteContactByIdResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://DAO" qname="ns:&gt;getAllContactsResponse" type="java:DAO.GetAllContactsResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://DAO" qname="ns:&gt;getAllContacts" type="java:DAO.GetAllContacts" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://DAO" qname="ns:&gt;addContact" type="java:DAO.AddContact" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://DAO" qname="ns:&gt;addContactResponse" type="java:DAO.AddContactResponse" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <arrayMapping xmlns:ns="http://DAO" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema" qname="ns:ArrayOf_xsd_anyType" type="java:java.lang.Object[]" innerType="cmp-ns:anyType" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://DAO" qname="ns:&gt;deleteContactById" type="java:DAO.DeleteContactById" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

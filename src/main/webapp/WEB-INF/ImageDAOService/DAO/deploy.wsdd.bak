@@ -1,0 +1,135 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ImageDAOService WSDL service -->
+
+  <service name="ImageDAO" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://DAO"/>
+      <parameter name="wsdlServiceElement" value="ImageDAOService"/>
+      <parameter name="schemaQualified" value="http://DAO,http://modal"/>
+      <parameter name="wsdlServicePort" value="ImageDAO"/>
+      <parameter name="className" value="DAO.ImageDAOSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="ImageDAO"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="selectAllImages" qname="operNS:selectAllImages" xmlns:operNS="http://DAO" returnQName="retNS:selectAllImagesReturn" xmlns:retNS="http://DAO" returnType="rtns:ArrayOf_xsd_anyType" xmlns:rtns="http://DAO" returnItemQName="tns:item" xmlns:tns="http://DAO" soapAction="" >
+      </operation>
+      <operation name="deleteImage" qname="operNS:deleteImage" xmlns:operNS="http://DAO" returnQName="retNS:deleteImageReturn" xmlns:retNS="http://DAO" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://DAO" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="updateImage" qname="operNS:updateImage" xmlns:operNS="http://DAO" returnQName="retNS:updateImageReturn" xmlns:retNS="http://DAO" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:image" xmlns:pns="http://DAO" type="tns:Image" xmlns:tns="http://modal"/>
+      </operation>
+      <operation name="selectImage" qname="operNS:selectImage" xmlns:operNS="http://DAO" returnQName="retNS:selectImageReturn" xmlns:retNS="http://DAO" returnType="rtns:Image" xmlns:rtns="http://modal" soapAction="" >
+        <parameter qname="pns:id" xmlns:pns="http://DAO" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="insertImage" qname="operNS:insertImage" xmlns:operNS="http://DAO" soapAction="" >
+        <parameter qname="pns:image" xmlns:pns="http://DAO" type="tns:Image" xmlns:tns="http://modal"/>
+      </operation>
+      <parameter name="allowedMethods" value="selectImage insertImage deleteImage updateImage selectAllImages"/>
+
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>updateImageResponse"
+        type="java:DAO.UpdateImageResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>insertImage"
+        type="java:DAO.InsertImage"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://modal"
+        qname="ns:Image"
+        type="java:modal.Image"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>deleteImageResponse"
+        type="java:DAO.DeleteImageResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>selectImage"
+        type="java:DAO.SelectImage"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>selectAllImages"
+        type="java:DAO.SelectAllImages"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>updateImage"
+        type="java:DAO.UpdateImage"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>selectAllImagesResponse"
+        type="java:DAO.SelectAllImagesResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <arrayMapping
+        xmlns:ns="http://DAO"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>deleteImage"
+        type="java:DAO.DeleteImage"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>selectImageResponse"
+        type="java:DAO.SelectImageResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+      <typeMapping
+        xmlns:ns="http://DAO"
+        qname="ns:>insertImageResponse"
+        type="java:DAO.InsertImageResponse"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle=""
+      />
+  </service>
+</deployment>
